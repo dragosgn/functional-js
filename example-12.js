@@ -33,4 +33,4 @@ launchMissiles()
 
 const app = launchMissiles().map(x => x + "!")
 app.map(x => x + "!").fork(e => console.log("err", e),
-                           x => console.console.log(("success", x));)
+                           x => console.log("success", x))
