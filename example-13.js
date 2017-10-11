@@ -19,8 +19,8 @@ const readFile = (filename, enc) =>
 
 const writeFile = (filename, contents) =>
   new Task((res, rej) =>
-    fs.writeFile(filename, contents, (err, success) =>
-      err ? rej(err) : res(success)))
+    fs.writeFile(filename, contents, (err, _) =>
+      err ? rej(err) : res("success")))
 
 const app = () =>
   readFile("config.json", "utf-8")
@@ -29,4 +29,4 @@ const app = () =>
 
 
 app().fork(e => console.log(e),
-            x => console.log("success"))
+            x => console.log("success!!"))
