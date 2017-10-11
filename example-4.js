@@ -1,12 +1,14 @@
 const Right = x =>
 ({
+  chain: f => f(x), // chain expects you to run a function and return another one
   map: f => Right(f(x)),
-  fold: (f, g) => g(x),
+  fold: (f, g) => g(x), // captures the idea of removing a value out of its context
   inspect: () => `Right(${x})`
 })
 
 const Left = x =>
 ({
+  chain: f => Left(x),
   map: f => Left(x),
   fold: (f, g) => f(x),
   inspect: () => `Left(${x})`
@@ -38,8 +40,9 @@ const tryCatch = f => {
 
 const getPort = () =>
   tryCatch(() => fs.readFileSync('config.json'))
-  .map(c => JSON.parse(c))
-  .fold()
+  .chain(c => tryCatch(JSON.parse(c)))
+  .fold(e => 3000,
+        c => c.port)
 
 
 const result = getPort()
