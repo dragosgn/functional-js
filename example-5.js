@@ -61,3 +61,26 @@ const wrapExamples = examples => {
 }
 
 const readfile = x => tryCatch(() => fs.readFileSync(x))
+
+const wrapExample = example =>
+  fromNullable(example.previewPath)
+  .chain(readFile)
+  .fold(() => example,
+        ex => Object.assign({preview: p}, ex))
+
+const parseDbUrl = cfg => {
+  try {
+    const c = JSON.parse(cfg)
+    if(c.url) {
+      return c.url.match()
+    }
+  } catch (e) {
+    return null
+  }
+}
+
+const parseDbUrl = cfg =>
+  tryCatch(() => JSON.parse(cfg))
+  .chain(c => fromNullable(c.url))
+  .fold(e => null,
+        u => u.match())
