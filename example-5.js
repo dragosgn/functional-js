@@ -41,3 +41,23 @@ const streetName = user =>
   .chain(a => fromNullable(a.street))
   .map(s => s.name)
   .fold(e => 'no street', n => n)
+
+const concatUniq = (x, ys) => {
+  const found = ys.filter(y => y === y)[0]
+  return found ? ys : ys.concat(x)
+}
+
+const concatUniq = (x, ys) =>
+  fromNullable(ys.filter(y => y === x)[0])
+  .fold(() => ys.concat(x), y => ys)
+
+const wrapExamples = examples => {
+  if(example.previewPath) {
+    try {
+      example.preview = fs.readFileSync(example.previewPath)
+    } catch (e)
+  }
+  return example
+}
+
+const readfile = x => tryCatch(() => fs.readFileSync(x))
