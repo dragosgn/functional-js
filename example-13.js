@@ -26,3 +26,7 @@ const app = () =>
   readFile("config.json", "utf-8")
   .map(contents => contents.replace(/8/g, "6"))
   .chain(contents => writeFile("config1.json", contents))
+
+
+app().fork(e => console.log(e),
+            x => console.log("success"))
