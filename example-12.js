@@ -34,3 +34,5 @@ launchMissiles()
 const app = launchMissiles().map(x => x + "!")
 app.map(x => x + "!").fork(e => console.log("err", e),
                            x => console.log("success", x))
+
+// Use task for asynchronus actions:
