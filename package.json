@@ -10,7 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "fs": "0.0.1-security",
     "immutable-ext": "^1.1.2"
+=======
+    "data.task": "^3.1.1",
+    "folktale": "^2.0.1",
+    "fs": "0.0.1-security"
+>>>>>>> 629427f4e0a84c80cd59c6cb41136daa3b830275
   }
 }
