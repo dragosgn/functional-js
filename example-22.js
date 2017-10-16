@@ -5,6 +5,8 @@ const { List } = require('immutable-ext')
 
 const readFile = futurize(fs.readFile)
 
-const files = ['box.js', 'config.json']
+const files = List(['box.js', 'config.json'])
+files.traverse(Task.of, fn => readFile(fn, 'utf-8')) // give him the type
+.fork(console.error, console.log)
 
-files.map(fn => readFile(fn, 'utf-8'))
+// [Task] => Task([]) -> Trasverse instead
